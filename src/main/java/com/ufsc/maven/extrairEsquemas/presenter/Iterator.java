@@ -52,7 +52,7 @@ public class Iterator {
         } catch (MongoException e) {
             System.out.println("Database vazia");
         } catch (NullPointerException e) {
-            System.out.println();
+            System.out.println("Teste");
         }
     }
 

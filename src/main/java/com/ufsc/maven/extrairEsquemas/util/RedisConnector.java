@@ -7,6 +7,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisConnector {
 
+    private Jedis jedis;
     private JedisPool pool;
     private String password;
     //Iniciação do server redis
@@ -16,7 +17,7 @@ public class RedisConnector {
         try {
             pool = new JedisPool(new JedisPoolConfig(), uri, Integer.valueOf(port), 2000);
             
-            Jedis jedis = pool.getResource();
+            jedis = pool.getResource();
             if (password != null & !password.isEmpty()) {
                 this.password = password;
                 jedis.auth(password);
@@ -35,8 +36,7 @@ public class RedisConnector {
     }
     //Opção mais "lenta", porém mais efetiva para exibir todas as chaves
 
-    public Jedis getJedisConection(){
-        Jedis jedis = pool.getResource();
+    public Jedis getJedisConection(){        
             if (password != null & !password.isEmpty()) {
                 this.password = password;
                 jedis.auth(password);
